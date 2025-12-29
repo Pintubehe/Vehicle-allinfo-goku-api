@@ -1,6 +1,6 @@
 // ==================== CONFIG =====================
 const YOUR_API_KEYS = ["GOKU"];
-const TARGET_API = "https://vehicleinfobyterabaap.vercel.app/lookup";
+const TARGET_API = "http://Tobi-rc-api.vercel.app";
 const CACHE_TIME = 3600 * 1000;
 // =================================================
 
@@ -73,7 +73,11 @@ export default async function handler(req, res) {
     }
 
     // Vehicle RC Info API call
-    const url = `${TARGET_API}?query=${encodeURIComponent(cleanVehicleQuery)}`;
+    const url = `${TARGET_API}/api/rc?number=${encodeURIComponent(cleanVehicleQuery)}`;
+    
+    // या अगर API endpoint अलग है तो उसके हिसाब से बदलें
+    // const url = `${TARGET_API}/lookup?number=${encodeURIComponent(cleanVehicleQuery)}`;
+    // const url = `${TARGET_API}?number=${encodeURIComponent(cleanVehicleQuery)}`;
 
     try {
         const upstream = await fetch(url);
@@ -125,4 +129,4 @@ export default async function handler(req, res) {
             details: err.message || "unknown error",
         });
     }
-    }
+}
